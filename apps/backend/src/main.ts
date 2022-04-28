@@ -8,7 +8,8 @@ import * as express from 'express';
 const app = express();
 
 app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to backend!' });
+  const name = req.query.my_name_is;
+  res.send({ message: `Hello ${name}, Welcome to backend!` });
 });
 
 const port = process.env.port || 3333;
