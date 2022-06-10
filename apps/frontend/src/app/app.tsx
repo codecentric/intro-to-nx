@@ -1,3 +1,4 @@
+import { sharedCode } from '@getting-started-with-nx/shared-code';
 import { useCallback, useState } from 'react';
 
 export function App() {
@@ -8,6 +9,11 @@ export function App() {
       const response = await fetch(
         `/api?my_name_is=${encodeURIComponent(input)}`
       );
+
+      // New:
+      if (response.headers.get('x-shared-code') === sharedCode()) {
+        alert('This line is secure!');
+      }
 
       const jsonResult = await response.json();
       setMessage(jsonResult.message);
